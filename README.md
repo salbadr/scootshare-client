@@ -10,7 +10,7 @@ The backend architecture uses S3 to host the static website. Authentication is h
 AWS DynamoDB is used to store the data, whereas S3 serves to store photos and images. AWS Cloudfront is used as a CDN to display static resources.
 
 test
-
+testing again
 ```npm run build```
 
 
