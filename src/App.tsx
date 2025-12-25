@@ -1,14 +1,20 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from '@/pages/Home'
+import About from '@/pages/AboutUs'
+
 
 function App() {
 
   return (
-    <>
-      <main>
-        <h1>Hello to ScootShare</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about-us' element={<About />} />
+      </Routes>
+    </BrowserRouter>
 
-      </main>
-    </>
+
   )
 }
 
