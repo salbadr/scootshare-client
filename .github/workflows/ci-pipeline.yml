@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
     - uses: actions/setup-node@v4
       with:
         node-version: '24'
@@ -28,3 +29,40 @@ jobs:
       
     - name: Making build
       run: npm run build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+
+  deploy:
+    name: Deploy to S3 bucket
+    runs-on: ubuntu-latest
+    
+    env:  
+      AWS_REGION: us-east-1
+      AWS_STAGING_ACCOUNT_ID: 612782034526
+      BUCKET_NAME: scootshare-website
+
+    needs: build
+
+    if: github.event_name =='push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{env.AWS_STAGING_ACCOUNT_ID}}:role/CrossAccountDeployRole
+          aws-region: ${{env.AWS_REGION}}
+      
+      - name: Deploy to S3
+        run: aws s3 sync dist/ s3://${{ env.BUCKET_NAME }}-${{env.AWS_STAGING_ACCOUNT_ID}} --delete
+
