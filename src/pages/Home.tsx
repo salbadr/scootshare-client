@@ -79,6 +79,67 @@ export default function Home() {
             description: 'Ride whenever you need, day or night'
         }
     ]
+
+
+    const welcomeCards: CardsType[] = [
+        {
+            id: useId(),
+            icon: PiLightning,
+            heading: 'Quick & Easy',
+            description: 'Unlock and ride in seconds with our mobile app'
+        },
+        {
+            id: useId(),
+            icon: FaMapMarkerAlt,
+            heading: 'Anywhere You Go',
+            description: 'Find scooters near you in all major city areas'
+        },
+        {
+            id: useId(),
+
+            icon: IoShieldOutline,
+            heading: 'Safe & Reliable',
+            description: 'Regular maintenance and safety checks on all scooters'
+        },
+        {
+            id: useId(),
+
+            icon: FaRegClock,
+            heading: '24/7 Available',
+            description: 'Ride whenever you need, day or night'
+        }
+    ]
+
+    const stepsCards: CardsType[] = [
+        {
+            id: useId(),
+
+            title: '01',
+            heading: 'Quick & Easy',
+            description: 'Unlock and ride in seconds with our mobile app'
+        },
+        {
+            id: useId(),
+
+            title: '02',
+            heading: 'Anywhere You Go',
+            description: 'Find scooters near you in all major city areas'
+        },
+        {
+            id: useId(),
+
+            title: '03',
+            heading: 'Safe & Reliable',
+            description: 'Regular maintenance and safety checks on all scooters'
+        },
+        {
+            id: useId(),
+
+            title: '04',
+            heading: '24/7 Available',
+            description: 'Ride whenever you need, day or night'
+        }
+    ]
     return (
         <section className="w-full h-full">
             <section className="bg-amber-50 p-20 flex flex-wrap justify-between space-y-4">
