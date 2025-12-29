@@ -7,7 +7,8 @@ import { Card } from "@/components/Card";
 import type { IconType } from "react-icons";
 import { useId } from 'react';
 
-
+import homepageBanner from '@/assets/homepage_banner.jpg'
+import { Button } from "@/components/Button";
 
 type CardsType = {
     id: string,
@@ -80,13 +81,28 @@ export default function Home() {
     ]
     return (
         <section className="w-full h-full">
-            {
-                //Main Welcome Section 
-            }
-            <div >
+            <section className="bg-amber-50 p-20 flex flex-wrap justify-between space-y-4">
+                <div className="w-sm md:w-2xl space-y-4">
+                    <h1 className="text-2xl md:text-6xl font-bold">Ride the Future of Urban Mobility</h1>
+                    <p className="text-wrap">Fast, eco-friendly, and convenient scooter sharing for your daily commute.
+                        Get where you need to go with Scoot Share
+                    </p>
+                    <div className="flex md:w-lg flex-wrap justify-between gap-2 md:gap-0 ">
+                        <Button className="bg-amber-300 w-full md:w-60 border-amber-300 ">Browse Scooters</Button>
+                        <Button className="bg-white w-full md:w-60 border-2 border-amber-300">Learn More</Button>
+
+                    </div>
+
+                </div>
+                <div className="w-md md:w-2xl">
+                    <img className="aspect-3/2 object-cover border-transparent border rounded-xl" src={homepageBanner} />
+
+                </div>
+            </section>
+            <section className="py-30 px-10 md:px-0">
                 <div className="text-center">
                     <h2 className="text-4xl mb-3 font-bold">Why Choose ScootShare?</h2>
-                    <p className="text-stone-500">Experience the easiest and most sustainable way to get around the city</p>
+                    <p className="text-zinc-500">Experience the easiest and most sustainable way to get around the city</p>
                 </div>
                 <div className="flex justify-evenly gap-10 flex-wrap items-center mt-20">
 
@@ -101,11 +117,11 @@ export default function Home() {
                         )
                     })}
                 </div>
-            </div>
-            <div className="bg-zinc-50 pt-30">
+            </section>
+            <section className="bg-zinc-50 py-30">
                 <div className="text-center">
                     <h2 className="text-4xl mb-3 font-bold">How it works?</h2>
-                    <p className="text-stone-500">Get riding in just four simple steps</p>
+                    <p className="text-zinc-500">Get riding in just four simple steps</p>
                 </div>
                 <div className="flex justify-evenly gap-10 flex-wrap items-center mt-20">
 
@@ -119,8 +135,15 @@ export default function Home() {
                         )
                     })}
                 </div>
-            </div>
+            </section>
 
+            <section className="bg-amber-300 py-20">
+                <div className="text-center">
+                    <h2 className="text-5xl text-zinc-800 mb-4 font-bold">Ready to Start Your Journey</h2>
+                    <p className="text-lg text-zinc-800 font-bold mb-4">Get riding in just four simple steps</p>
+                    <Button className="bg-white text-lg border text-zinc-800 rounded-lg py-3 px-8 border-white cursor-pointer font-bold">Browse Scooters</Button>
+                </div>
+            </section>
         </section>
     )
 }
