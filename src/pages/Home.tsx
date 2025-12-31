@@ -7,8 +7,8 @@ import { Card } from "@/components/Card";
 import type { IconType } from "react-icons";
 import { useId } from 'react';
 
-import homepageBanner from '@/assets/homepage_banner.jpg'
 import { Button } from "@/components/Button";
+import { siteImage } from "@/helper";
 
 type CardsType = {
     id: string,
@@ -18,6 +18,8 @@ type CardsType = {
     description: string
 }
 export default function Home() {
+
+    const homepageBanner = siteImage('homepage_banner.jpg');
 
     const welcomeCards: CardsType[] = [
         {
