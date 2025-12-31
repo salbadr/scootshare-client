@@ -4,22 +4,14 @@ import { FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 import { IoShieldOutline } from "react-icons/io5";
 import { Card } from "@/components/Card";
 
-import type { IconType } from "react-icons";
 import { useId } from 'react';
 
 import { Button } from "@/components/Button";
 import { siteImage } from "@/helper";
+import type { CardsType } from "@/types";
 
-type CardsType = {
-    id: string,
-    icon?: IconType,
-    title?: string,
-    heading: string,
-    description: string
-}
+
 export default function Home() {
-
-    const homepageBanner = siteImage('homepage_banner.jpg');
 
     const welcomeCards: CardsType[] = [
         {
@@ -96,11 +88,11 @@ export default function Home() {
 
                 </div>
                 <div className="w-md md:w-2xl">
-                    <img className="aspect-3/2 object-cover border-transparent border rounded-xl" src={homepageBanner} />
+                    <img className="aspect-3/2 object-cover border-transparent border rounded-xl" src={siteImage('homepage_banner.jpg')} />
 
                 </div>
             </section>
-            <section className="py-30 px-10 md:px-0">
+            <section className="py-30 px-10 md:px-0 border-b-2 border-zinc-200">
                 <div className="text-center">
                     <h2 className="text-4xl mb-3 font-bold">Why Choose ScootShare?</h2>
                     <p className="text-zinc-500">Experience the easiest and most sustainable way to get around the city</p>
@@ -139,9 +131,9 @@ export default function Home() {
             </section>
 
             <section className="bg-amber-300 py-20">
-                <div className="text-center">
-                    <h2 className="text-5xl text-zinc-800 mb-4 font-bold">Ready to Start Your Journey</h2>
-                    <p className="text-lg text-zinc-800 font-bold mb-4">Get riding in just four simple steps</p>
+                <div className="text-center space-y-5">
+                    <h2 className="text-4xl text-zinc-800 mb-4 font-bold">Ready to Start Your Journey</h2>
+                    <p className="text-lg text-zinc-800 font-semi-bold">Get riding in just four simple steps</p>
                     <Button className="bg-white text-lg border text-zinc-800 rounded-lg py-3 px-8 border-white cursor-pointer font-bold">Browse Scooters</Button>
                 </div>
             </section>
