@@ -1,13 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: ScootShare CI
+name: ScootShare CI for release
 run-name: Running build for  ${{ github.sha}}
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 jobs:
   build:
@@ -26,56 +24,3 @@ jobs:
       
     - name: Run Linting
       run: npm run lint
-      
-    - name: Making build
-      run: npm run build
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist
-        path: dist/
-
-
-  deploy:
-    name: Deploy to S3 bucket
-    runs-on: ubuntu-latest
-    
-    permissions:
-      id-token: write
-      contents: read
-
-    env:  
-      AWS_REGION: us-east-1
-      AWS_TOOLING_ACCOUNT_ID: 824161490652
-      AWS_STAGING_ACCOUNT_ID: 612782034526
-      BUCKET_NAME: scootshare-website
-
-    needs: build
-
-    if: github.event_name =='push' && github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-      
-      - name: Configure Tooling credentials
-        uses: aws-actions/configure-aws-credentials@v5.1.0
-        with:
-            role-to-assume: arn:aws:iam::${{ env.AWS_TOOLING_ACCOUNT_ID }}:role/GitHubActionsDeployRole
-            aws-region: ${{ env.AWS_REGION }}
-
-      - name: Configure Staging credentials
-        uses: aws-actions/configure-aws-credentials@v5.1.0
-        with:
-            role-to-assume: arn:aws:iam::${{ env.AWS_STAGING_ACCOUNT_ID }}:role/CrossAccountDeployRole
-            aws-region: ${{ env.AWS_REGION }}
-            role-chaining: true
-            role-skip-session-tagging: true
-      
-      - name: Deploy to S3
-        run: aws s3 sync dist/ s3://${{ env.BUCKET_NAME }}-${{env.AWS_STAGING_ACCOUNT_ID}} --delete
-
