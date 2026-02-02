@@ -2,22 +2,23 @@ import { NavLink, Link } from "react-router-dom"
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 type NavLinkClassNames = {
     isActive: boolean;
 }
 
 type NavLinks = {
+    id: string,
     to: string;
     name: string;
 }
 //Navigation
 export default function Nav() {
-    const [open, setOpen] = useState(false)
+    const [openMobileMenu, setOpenMobileMenu] = useState(false)
 
     function handleMobileMenuToggle() {
-        setOpen(!open)
+        setOpenMobileMenu(!openMobileMenu)
     }
 
     function generateClassNames({ isActive }: NavLinkClassNames) {
@@ -28,64 +29,84 @@ export default function Nav() {
 
     const navLinks: NavLinks[] = [
         {
+            id: useId(),
+
             to: '/',
             name: 'Home',
         },
         {
+            id: useId(),
+
+            to: '/scooters',
+            name: 'Scooters'
+        },
+        {
+            id: useId(),
+
             to: '/about',
             name: 'About',
-        }
+        },
+
 
     ]
 
-    return (<nav className="flex z-50 bg-white justify-between items-center flex-wrap
+    const renderMenu = () => {
+        return (
+            <nav className="hidden md:flex">
+                <ul className="md:flex gap-5">
+                    {generateLinks()}
+                </ul>
+            </nav>)
+    }
+
+    const renderMobileMenu = () => {
+        return (
+            <nav className="md:hidden flex w-full flex-col" aria-hidden={!openMobileMenu}>
+                <ul className="space-y-4 mt-5" >
+                    {
+                        generateLinks()
+                    }
+                </ul>
+            </nav>
+        )
+    }
+
+    const generateLinks = () => {
+        return navLinks.map((navLink) => (
+            <li>
+                <NavLink
+                    className={generateClassNames}
+                    key={navLink.id}
+                    onClick={openMobileMenu ? handleMobileMenuToggle : undefined}
+                    to={navLink.to}>
+                    {navLink.name}
+                </NavLink >
+            </li>))
+    }
+
+
+
+    return (<section className="flex z-50 bg-white justify-between items-center flex-wrap
     border-t border-b border-gray-300 px-6 py-3 sticky top-0 shadow-md shadow-stone-200">
-        <div>
+        <button>
             <Link to="/">Logo</Link>
-        </div>
+        </button>
+        {renderMenu()}
 
-        <div className="hidden md:flex gap-5">
-            {
-                navLinks.map((navLink) => (
-                    <NavLink
-                        className={generateClassNames}
-                        key={navLink.to}
-                        to={navLink.to}>
-                        {navLink.name}
-                    </NavLink >
+        <button
+            className="md:hidden text-lg"
+            onClick={handleMobileMenuToggle}
+            aria-label="Toggle mobile menu"
+            aria-expanded={openMobileMenu}
+        >
+            {!openMobileMenu ? <RxHamburgerMenu /> : <MdClose />}
+        </button>
 
-                ))
-            }
-        </div>
-
-        <div className="md:hidden">
-            <button
-                className="text-lg"
-                onClick={handleMobileMenuToggle}
-                aria-label="Toggle mobile menu"
-                aria-expanded={open}
-            >
-                {!open ? <RxHamburgerMenu /> : <MdClose />}
-            </button>
-        </div>
 
         {
-            open && <div className="md:hidden flex w-full flex-col mt-3" aria-hidden={!open}>
-                {
-                    navLinks.map((navLink) => (
-                        <NavLink
-                            className={generateClassNames}
-                            onClick={handleMobileMenuToggle}
-                            key={navLink.to}
-                            to={navLink.to}>
-                            {navLink.name}
-                        </NavLink >
-
-                    ))
-                }
-            </div>
+            openMobileMenu && renderMobileMenu()
         }
-    </nav>
+    </section>
 
     )
 }
