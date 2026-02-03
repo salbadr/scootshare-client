@@ -1,11 +1,12 @@
 import './App.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from '@/pages/Home'
-import About from '@/pages/AboutUs'
+
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import Scooters from '@/components/Scooters'
+import Home from '@/pages/Home'
+import About from '@/pages/AboutUs'
+import Scooters from '@/pages/Scooters'
 
 
 const queryClient = new QueryClient({
