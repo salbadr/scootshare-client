@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { clsx } from 'clsx';
+import { twMerge } from "tailwind-merge";
 
 type CardProps = {
     children: ReactNode
@@ -10,16 +10,16 @@ type CardProps = {
 export function Card({ children, alignment = 'center', className }: CardProps) {
 
     return (
-        <div
+        <article
             className={
-                clsx(`card border 
+                twMerge(`card border 
                         border-solid rounded-xl border-zinc-200
                         flex justify-evenly items-${alignment} 
                         flex-col hover:shadow-lg transition-shadow duration-300 p-6 gap-6`, className)
 
             }>
             {children}
-        </div>
+        </article>
 
     )
 }
