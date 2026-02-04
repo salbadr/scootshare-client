@@ -73,10 +73,9 @@ export default function Nav() {
 
     const generateLinks = () => {
         return navLinks.map((navLink) => (
-            <li>
+            <li key={navLink.id}>
                 <NavLink
                     className={generateClassNames}
-                    key={navLink.id}
                     onClick={openMobileMenu ? handleMobileMenuToggle : undefined}
                     to={navLink.to}>
                     {navLink.name}

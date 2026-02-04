@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import Home from '@/pages/Home'
 import About from '@/pages/AboutUs'
 import Scooters from '@/pages/Scooters'
+import { ScooterDetails } from './pages/ScooterDetails'
 
 
 const queryClient = new QueryClient({
@@ -30,6 +31,7 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/scooters' element={<Scooters />} />
+            <Route path='/scooters/:id' element={<ScooterDetails />} />
 
           </Routes>
         </main>
