@@ -2,7 +2,6 @@ import { Badge } from "@/components/Badge";
 import { Card } from "@/components/Card";
 import { scooterImage } from "@/helper";
 import { useScooters } from "@/hooks/useScooters";
-import type { ScooterType } from "@/types/scooter";
 import { Link } from "react-router-dom";
 
 
@@ -15,19 +14,7 @@ export default function Scooters() {
         return <div>No Scooters....</div>
     }
 
-    const getBadgeColor = (type: ScooterType) => {
-
-        switch (type) {
-            case 'Electric':
-                return 'bg-lime-600 text-white'
-            case 'Gas':
-                return 'bg-amber-600 text-white'
-            case 'Kick':
-                return 'bg-zinc-600 text-white'
-
-        }
-
-    }
+  
     return (
         <section className="w-full h-full bg-amber-50">
             <section className=" p-10">
@@ -44,7 +31,7 @@ export default function Scooters() {
                                     <h2 className="text-lg font-bold">{scooter.name}</h2>
                                     <p>${scooter.price}/hr</p>
                                 </div>
-                                <Badge className={getBadgeColor(scooter.type)}>{scooter.type}</Badge>
+                                <Badge type={scooter.type}>{scooter.type}</Badge>
                             </div>
                         </Link>
 
