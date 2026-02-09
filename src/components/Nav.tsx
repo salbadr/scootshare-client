@@ -85,7 +85,7 @@ export default function Nav() {
 
 
 
-    return (<section className="flex z-50 bg-white justify-between items-center flex-wrap
+    return (<header className="flex z-50 bg-white justify-between items-center flex-wrap
     border-t border-b border-gray-300 px-6 py-3 sticky top-0 shadow-md shadow-stone-200">
         <button>
             <Link to="/">Logo</Link>
@@ -105,7 +105,7 @@ export default function Nav() {
         {
             openMobileMenu && renderMobileMenu()
         }
-    </section>
+    </header>
 
     )
 }
