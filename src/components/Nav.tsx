@@ -30,19 +30,21 @@ export default function Nav() {
     const navLinks: NavLinks[] = [
         {
             id: useId(),
-
             to: '/',
             name: 'Home',
         },
         {
             id: useId(),
-
             to: '/scooters',
             name: 'Scooters'
         },
+          {
+            id: useId(),
+            to: '/host',
+            name: 'Host',
+        },
         {
             id: useId(),
-
             to: '/about',
             name: 'About',
         },
