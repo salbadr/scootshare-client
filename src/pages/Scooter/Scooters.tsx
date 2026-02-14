@@ -17,7 +17,7 @@ export default function Scooters() {
   
     return (
         <section className="w-full h-full bg-amber-50">
-            <section className=" p-10">
+            <section className="p-10">
                 <h1 className="text-2xl md:text-4xl font-semi-bold">Available Scooters Near You</h1>
 
             </section>
