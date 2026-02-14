@@ -10,6 +10,7 @@ import { ScooterDetails } from '@/pages/Scooter/ScooterDetails'
 import { Dashboard } from '@/pages/Host/Dashboard'
 import { Income } from '@/pages/Host/Income'
 import { Reviews } from '@/pages/Host/Reviews'
+import { HostLayout } from './pages/Host/HostLayout'
 
 
 const queryClient = new QueryClient({
@@ -34,7 +35,8 @@ function App() {
             <Route path='/scooters' element={<Scooters />} />
             <Route path='/scooters/:id' element={<ScooterDetails />} />
 
-            <Route path='/host' element={<Dashboard />} >
+            <Route path='/host' element={<HostLayout />} >
+              <Route path='/host/'  element={<Dashboard />} />
 
               <Route path='/host/income' element={<Income />} />
               <Route path='/host/reviews' element={<Reviews />} />
