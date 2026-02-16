@@ -21,9 +21,8 @@ export default function Nav({ navLinks }: { navLinks: NavLinks[] }) {
     }
 
     function renderClassNames({ isActive }: NavLinkClassNames) {
-        return `hover:text-zinc-900 transition-colors w-full p-2  ${isActive ? 'text-amber-600 rounded-sm bg-amber-100 md:bg-white md:rounded-none ' : ''
-            }
-        `;
+        const activeClass = isActive ? 'text-amber-600 rounded-sm bg-amber-100 md:bg-white md:rounded-none ' : ''
+        return `hover:text-zinc-900 transition-colors w-full p-2  ${activeClass}`;
     }
 
 
