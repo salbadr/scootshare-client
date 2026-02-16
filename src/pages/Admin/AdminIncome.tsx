@@ -1,4 +1,4 @@
-export function Income() {
+export function AdminIncome() {
 
     return (
         <section className="p-10">

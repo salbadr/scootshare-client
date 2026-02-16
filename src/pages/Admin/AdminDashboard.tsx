@@ -1,4 +1,4 @@
-export function Dashboard() {
+export function AdminDashboard() {
 
     return (
         <section className="p-10">
