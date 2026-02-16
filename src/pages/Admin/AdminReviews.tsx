@@ -1,4 +1,4 @@
-export function Reviews() {
+export function AdminReviews() {
 
     return (
         <section className="p-10">

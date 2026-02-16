@@ -19,15 +19,16 @@ export function Layout() {
             to: '/scooters',
             name: 'Scooters'
         },
-        {
-            id: useId(),
-            to: '/host',
-            name: 'Host',
-        },
+       
         {
             id: useId(),
             to: '/about',
             name: 'About',
+        },
+         {
+            id: useId(),
+            to: '/admin',
+            name: 'Admin',
         },
 
 

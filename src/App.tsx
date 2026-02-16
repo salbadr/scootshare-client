@@ -7,10 +7,10 @@ import Home from '@/pages/Home'
 import About from '@/pages/AboutUs'
 import Scooters from '@/pages/Scooter/Scooters'
 import { ScooterDetails } from '@/pages/Scooter/ScooterDetails'
-import { Dashboard } from '@/pages/Host/Dashboard'
-import { Income } from '@/pages/Host/Income'
-import { Reviews } from '@/pages/Host/Reviews'
-import { HostLayout } from './pages/Host/HostLayout'
+import { AdminDashboard } from '@/pages/Admin/AdminDashboard'
+import { AdminIncome } from '@/pages/Admin/AdminIncome'
+import { AdminReviews } from '@/pages/Admin/AdminReviews'
+import { AdminLayout } from './pages/Admin/AdminLayout'
 
 
 const queryClient = new QueryClient({
@@ -28,18 +28,17 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/scooters' element={<Scooters />} />
-            <Route path='/scooters/:id' element={<ScooterDetails />} />
+          <Route path='/'  element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='home' element={<Home />} />
+            <Route path='about' element={<About />} />
+            <Route path='scooters' element={<Scooters />} />
+            <Route path='scooters/:id' element={<ScooterDetails />} />
 
-            <Route path='/host' element={<HostLayout />} >
-              <Route path='/host/'  element={<Dashboard />} />
-
-              <Route path='/host/income' element={<Income />} />
-              <Route path='/host/reviews' element={<Reviews />} />
+            <Route path='/admin' element={<AdminLayout />} >
+              <Route index element={<AdminDashboard />} />
+              <Route path='income' element={<AdminIncome />} />
+              <Route path='reviews' element={<AdminReviews />} />
             </Route>
 
           </Route>

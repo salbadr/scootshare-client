@@ -2,21 +2,21 @@ import { Menu, type NavLinkClassNames, type NavLinks } from "@/components/Menu"
 import { useId } from "react"
 import { Outlet } from "react-router-dom"
 
-export function HostLayout() {
+export function AdminLayout() {
     const navLinks: NavLinks[] = [
         {
             id: useId(),
-            to: '/host',
+            to: '',
             name: 'Dashboard',
         },
         {
             id: useId(),
-            to: '/host/income',
+            to: 'income',
             name: 'Income'
         },
         {
             id: useId(),
-            to: '/host/reviews',
+            to: 'reviews',
             name: 'Reviews',
         },
 
