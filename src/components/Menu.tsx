@@ -8,6 +8,7 @@ export type NavLinks = {
     id: string,
     to: string;
     name: string;
+    end?: boolean;
 }
 type MenuProps = {
     navLinks: NavLinks[],
@@ -24,7 +25,9 @@ export function Menu({ navLinks, renderClassNames }: MenuProps) {
                     <li key={navLink.id}>
                         <NavLink
                             className={renderClassNames}
-                            to={navLink.to}>
+                            to={navLink.to}
+                            end={navLink.end}
+                            >
                             {navLink.name}
                         </NavLink >
                     </li>)

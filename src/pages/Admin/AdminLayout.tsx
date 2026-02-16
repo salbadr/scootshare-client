@@ -8,6 +8,7 @@ export function AdminLayout() {
             id: useId(),
             to: '',
             name: 'Dashboard',
+            end: true,
         },
         {
             id: useId(),
@@ -22,15 +23,15 @@ export function AdminLayout() {
 
     ]
 
-     function renderClassNames({ isActive }: NavLinkClassNames) {
-            return `hover:text-zinc-900 transition-colors w-full p-2  ${isActive ? 'text-amber-600' : ''
-                }
-            `;
-        }
+    function renderClassNames({ isActive }: NavLinkClassNames) {
+        const activeClass = isActive ? 'text-amber-600' : ''
+        return `hover:text-zinc-900 transition-colors w-full p-2  ${activeClass}`;
+    }
+
     return (
         <section className="w-full h-full bg-amber-50">
             <section className="py-10 px-8">
-                <Menu navLinks={navLinks} renderClassNames={renderClassNames}/>
+                <Menu navLinks={navLinks} renderClassNames={renderClassNames} />
 
             </section>
 
