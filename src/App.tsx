@@ -10,7 +10,9 @@ import { ScooterDetails } from '@/pages/Scooter/ScooterDetails'
 import { AdminDashboard } from '@/pages/Admin/AdminDashboard'
 import { AdminIncome } from '@/pages/Admin/AdminIncome'
 import { AdminReviews } from '@/pages/Admin/AdminReviews'
-import { AdminLayout } from './pages/Admin/AdminLayout'
+import { AdminLayout } from '@/pages/Admin/AdminLayout'
+import { AdminScooters } from '@/pages/Admin/AdminScooters'
+import { AdminScooterDetails } from '@/pages/Admin/AdminScooterDetails'
 
 
 const queryClient = new QueryClient({
@@ -38,6 +40,9 @@ function App() {
             <Route path='/admin' element={<AdminLayout />} >
               <Route index element={<AdminDashboard />} />
               <Route path='income' element={<AdminIncome />} />
+              <Route path='scooters' element={<AdminScooters />} />
+              <Route path='scooters/:id' element={<AdminScooterDetails />} />
+
               <Route path='reviews' element={<AdminReviews />} />
             </Route>
 

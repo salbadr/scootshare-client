@@ -15,6 +15,11 @@ export function AdminLayout() {
             to: 'income',
             name: 'Income'
         },
+         {
+            id: useId(),
+            to: 'scooters',
+            name: 'Scooters'
+        },
         {
             id: useId(),
             to: 'reviews',
