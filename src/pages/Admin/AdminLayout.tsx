@@ -1,3 +1,4 @@
+import { Card } from "@/components/Card"
 import { Menu, type NavLinkClassNames, type NavLinks } from "@/components/Menu"
 import { useId } from "react"
 import { Outlet } from "react-router-dom"
@@ -15,7 +16,7 @@ export function AdminLayout() {
             to: 'income',
             name: 'Income'
         },
-         {
+        {
             id: useId(),
             to: 'scooters',
             name: 'Scooters'
@@ -34,13 +35,17 @@ export function AdminLayout() {
     }
 
     return (
-        <section className="w-full h-full">
-            <section className="py-10">
-                <Menu navLinks={navLinks} renderClassNames={renderClassNames} />
+        <section className="w-full h-full grid grid-cols-[0.15fr_0.85fr] gap-8">
+            <Card className="bg-white justify-start hover:shadow-none" alignment="left">
+                <Menu navLinks={navLinks}
+                    listClassNames={'space-y-4'}
+                    renderClassNames={renderClassNames} />
 
-            </section>
+            </Card>
 
             <Outlet />
+
+
         </section>
     )
 }

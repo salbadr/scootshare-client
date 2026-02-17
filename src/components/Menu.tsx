@@ -12,42 +12,33 @@ export type NavLinks = {
 }
 type MenuProps = {
     navLinks: NavLinks[],
+    navClassNames?: string,
+    listClassNames?: string,
     renderClassNames?: ({ isActive }: NavLinkClassNames) => string,
     openMobileMenu?: boolean,
-    onClickHandler?: () => void,
+    onClickHandler?: () => void
+
 }
 
-export function Menu({ navLinks, renderClassNames }: MenuProps) {
+export function Menu({
+    navLinks,
+    navClassNames,
+    listClassNames,
+    renderClassNames,
+    onClickHandler,
+    openMobileMenu }: MenuProps) {
     return (
-        <nav className="hidden md:flex">
-            <ul className="md:flex gap-5">
+        <nav className={navClassNames} aria-hidden={!openMobileMenu}>
+            <ul className={listClassNames}>
                 {navLinks.map((navLink) => (
                     <li key={navLink.id}>
                         <NavLink
                             className={renderClassNames}
                             to={navLink.to}
-                            end={navLink.end}
-                            >
-                            {navLink.name}
-                        </NavLink >
-                    </li>)
-                )
-                }
-            </ul>
-        </nav>)
-}
-
-
-export function MobileMenu({ navLinks, renderClassNames, onClickHandler, openMobileMenu }: MenuProps) {
-    return (
-        <nav className="md:hidden flex w-full flex-col" aria-hidden={!openMobileMenu}>
-            <ul className="space-y-4 mt-5" >
-                {navLinks.map((navLink) => (
-                    <li key={navLink.id}>
-                        <NavLink
-                            className={renderClassNames}
                             onClick={onClickHandler}
-                            to={navLink.to}>
+
+                            end={navLink.end}
+                        >
                             {navLink.name}
                         </NavLink >
                     </li>)

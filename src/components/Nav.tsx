@@ -3,7 +3,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
 
 import { useState } from "react";
-import { Menu, MobileMenu, type NavLinkClassNames } from "./Menu";
+import { Menu, type NavLinkClassNames } from "./Menu";
 
 
 
@@ -31,7 +31,7 @@ export default function Nav({ navLinks }: { navLinks: NavLinks[] }) {
         <button>
             <Link to="/">Logo</Link>
         </button>
-        <Menu navLinks={navLinks} renderClassNames={renderClassNames} />
+        <Menu navLinks={navLinks} navClassNames={'hidden md:flex'} listClassNames={'md:flex gap-5'} renderClassNames={renderClassNames} />
 
         <button
             className="md:hidden text-lg"
@@ -44,7 +44,9 @@ export default function Nav({ navLinks }: { navLinks: NavLinks[] }) {
 
 
         {
-            openMobileMenu && <MobileMenu
+            openMobileMenu && <Menu
+                navClassNames={'md:hidden flex w-full flex-col'}
+                listClassNames={'space-y-4 mt-5'}
                 navLinks={navLinks}
                 renderClassNames={renderClassNames}
                 onClickHandler={handleMobileMenuToggle}
