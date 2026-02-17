@@ -36,7 +36,7 @@ export function Layout() {
     return (
         <>
             <Nav navLinks={navLinks} />
-            <main>
+            <main className="p-10 bg-amber-50">
                 <Outlet />
             </main>
             <Footer />

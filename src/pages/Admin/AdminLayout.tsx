@@ -34,8 +34,8 @@ export function AdminLayout() {
     }
 
     return (
-        <section className="w-full h-full bg-amber-50">
-            <section className="py-10 px-8">
+        <section className="w-full h-full">
+            <section className="py-10">
                 <Menu navLinks={navLinks} renderClassNames={renderClassNames} />
 
             </section>
