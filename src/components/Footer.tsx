@@ -8,12 +8,12 @@ export default function Footer (){
             <p className="w-3xs">Making cities more accessible, one ride at a time</p>
           </section>
 
-          <section className='flex flex-col gap-3 mx-auto' >
+          <section className='flex flex-col gap-3 md:mx-auto' >
             <h3 className="text-lg text-white font-semibold">Company</h3>
             <Link to="/about" className='hover:text-white'>About Us</Link>
             <Link to="/contact" className='hover:text-white'>Contact</Link>
           </section>
-          <section className='flex flex-col gap-3 mx-auto'>
+          <section className='flex flex-col gap-3 md:mx-auto'>
             <h3 className="text-lg text-white font-semibold">Scooters</h3>
             <Link to="/about" className='hover:text-white'>Browse Scooters</Link>
            { /*<Link to="/contact" className='hover:text-white'>How it Works</Link>*/}

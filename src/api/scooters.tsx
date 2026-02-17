@@ -3,7 +3,7 @@ import type { Scooter } from "@/types/scooter";
 import type { QueryFunctionContext } from "@tanstack/react-query";
 
 export async function getScooters(): Promise<Scooter[]> {
-    const { data, error } = await supabase.from("scooters").select('*');
+    const { data, error } = await supabase.from("scooters").select('*').order('name', {ascending: true});
     if (error) throw error
     return data as Scooter[] 
 }
