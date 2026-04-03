@@ -1,4 +1,5 @@
 import { Card } from "@/components/Card";
+import { scooterImage } from "@/helper";
 import { useScooters } from "@/hooks/useScooters";
 
 export function AdminScooters() {
@@ -70,8 +71,9 @@ export function AdminScooters() {
                     </thead>
                     <tbody>
                         {scooters.map((scooter) => (
-                            <tr className="border-b border-zinc-300" key={scooter.id}>
-                                <td>
+                            <tr className="border-b border-zinc-300 hover:bg-amber-50" key={scooter.id}>
+                                <td className="flex gap-2 items-center p-2">
+                                    <img className="aspect-square object-cover border-none rounded-xl w-10" alt={scooter.name} title={scooter.name} src={scooterImage(scooter.image)} />
                                     {scooter.name}
                                 </td>
                                 <td>

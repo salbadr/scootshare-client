@@ -1,9 +1,11 @@
+
+import { Link } from "react-router-dom";
+import { IoLocationOutline } from "react-icons/io5";
+
 import { Badge } from "@/components/Badge";
 import { Card } from "@/components/Card";
 import { scooterImage } from "@/helper";
 import { useScooters } from "@/hooks/useScooters";
-import { Link } from "react-router-dom";
-
 
 export default function Scooters() {
     const { isLoading, data: scooters } = useScooters();
@@ -14,7 +16,7 @@ export default function Scooters() {
         return <div>No Scooters....</div>
     }
 
-  
+
     return (
         <section className="w-full h-full bg-amber-50">
             <section className="p-10">
@@ -30,6 +32,10 @@ export default function Scooters() {
                                 <div className="flex justify-between">
                                     <h2 className="text-lg font-bold">{scooter.name}</h2>
                                     <p>${scooter.price}/hr</p>
+                                </div>
+                                <div className="flex gap-2">
+                                    <IoLocationOutline className="text-xl" aria-label="Location"/>
+                                    <span>{scooter.location}</span>
                                 </div>
                                 <Badge type={scooter.type}>{scooter.type}</Badge>
                             </div>
