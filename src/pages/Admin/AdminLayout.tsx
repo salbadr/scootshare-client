@@ -35,7 +35,7 @@ export function AdminLayout() {
     }
 
     return (
-        <section className="w-full h-full grid grid-cols-[0.15fr_0.85fr] gap-8">
+        <section className="w-full h-full grid grid-cols-[0.15fr_0.85fr] gap-8 p-10">
             <Card className="bg-white justify-start hover:shadow-none" alignment="left">
                 <Menu navLinks={navLinks}
                     listClassNames={'space-y-4'}
