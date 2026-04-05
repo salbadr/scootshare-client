@@ -6,7 +6,7 @@ type ButtonProps = {
     className: string,
 }
 
-export function Button({ children, className }: ButtonProps) {
+export function Button({ children, className, ...rest }: ButtonProps & React.ComponentPropsWithRef<'button'>) {
     return (
         <button
             className={
@@ -14,7 +14,9 @@ export function Button({ children, className }: ButtonProps) {
                     py-3 px-8 text-center 
                     cursor-pointer font-bold`, className)
 
-            }>
+            }
+            {...rest}
+        >
             {children}
         </button>
     )

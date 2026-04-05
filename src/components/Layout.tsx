@@ -1,41 +1,15 @@
-import Nav from "@/components/Nav";
 import Footer from '@/components/Footer'
 import { Outlet } from "react-router-dom";
-import { useId } from "react";
-import type { NavLinks } from "./Menu";
+import Header from '@/components/Header';
 
 
 
 export function Layout() {
 
-    const navLinks: NavLinks[] = [
-        {
-            id: useId(),
-            to: '/',
-            name: 'Home',
-        },
-        {
-            id: useId(),
-            to: '/scooters',
-            name: 'Scooters'
-        },
-       
-        {
-            id: useId(),
-            to: '/about',
-            name: 'About',
-        },
-         {
-            id: useId(),
-            to: '/admin',
-            name: 'Admin',
-        },
-
-
-    ]
+   
     return (
         <>
-            <Nav navLinks={navLinks} />
+            <Header />
             <main className="bg-amber-50">
                 <Outlet />
             </main>
