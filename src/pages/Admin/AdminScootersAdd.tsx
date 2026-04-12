@@ -1,6 +1,10 @@
 import { Button } from "@/components/Button";
 import { ButtonVariant } from "@/components/ButtonVariant";
+import { FormInput } from "@/components/FormInput";
+import { FormSelect } from "@/components/FormSelect";
 import { Overlay } from "@/components/Overlay";
+import { ScooterTypes } from "@/types/scooter";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
 type AdminScootersAddProps = {
@@ -8,12 +12,26 @@ type AdminScootersAddProps = {
 }
 
 export function AdminScootersAdd({ close }: AdminScootersAddProps) {
+    const [scooterData, setScooterData] = useState({
+        name: '',
+        price: 10,
+        type: 'electric',
+        location: '',
+    });
+
+    const scooter_types = Object
+        .entries(ScooterTypes)
+        .map(([value, label], index) => ({ label, value, id: `${index}`, selected: false }))
 
     const handleSubmit = (formData: FormData) => {
 
-        for (const key of formData.keys()) {
-            console.log(key);
-        }
+        console.log(Array.from(formData.entries()))
+
+    }
+
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setScooterData((prev) => ({ ...prev, [event.target.name]: event.target.value }))
     }
 
     return (
@@ -34,34 +52,14 @@ export function AdminScootersAdd({ close }: AdminScootersAddProps) {
                         <legend className="font-bold">Add New Scooter</legend>
                         <span className="text-xs">Fields marked with (*) are required</span>
                     </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="scooter_name" className="font-bold">Scooter Name*</label>
-                        <input id="scooter_name" name="name" type="text" className="border border-zinc-500 rounded-sm px-2 py-1 focus:outline-amber-500" required />
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="scooter_price" className="font-bold">Price per Hour ($)*</label>
-                        <input id="scooter_price" name="price" type="number" className="border border-zinc-500 rounded-sm px-2 py-1 focus:outline-amber-500" min="10" max="50" required />
-                    </div>
-
-                    <div className="flex flex-col">
-                        <label htmlFor="scooter_type" className="font-bold">Scooter Type*</label>
-                        <select id="scooter_type" name="type" className="border border-zinc-500 rounded-sm px-2 py-1 focus:outline-amber-500 " required>
-                            <option value=""></option>
-                            <option value="electric">Electric</option>
-                            <option value="gas">Gas</option>
-                            <option value="kick">Kick</option>
-                        </select>
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="scooter_location" className="font-bold">Location*</label>
-                        <input id="scooter_location" name="location" type="text" className="border border-zinc-500 rounded-sm px-2 py-1 focus:outline-amber-500" required />
-
-                    </div>
+                    <FormInput name="name" id="scooter_name" label="Name" required value={scooterData.name} onChange={handleChange} />
+                    <FormInput name="price" id="scooter_price" label="Price" type="number" min="10" max="50" required value={scooterData.price} onChange={handleChange} />
+                    <FormSelect name="type" id="scooter_type" label="Type" options={scooter_types} value={scooterData.type} required onChange={handleChange} />
+                    <FormInput name="location" id="scooter_location" label="Location" required value={scooterData.location} onChange={handleChange} />
                     <div className="flex justify-end gap-2">
                         <ButtonVariant className='md:w-30 p-2' value='Cancel' onClick={close}
                         />
                         <ButtonVariant className='md:w-30 p-2' variant="callout" value='Submit' />
-
                     </div>
                 </fieldset>
 
