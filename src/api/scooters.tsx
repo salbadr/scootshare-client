@@ -1,15 +1,23 @@
 import { supabase } from "@/libs/supabase"
 import type { Scooter } from "@/types/scooter";
-import type { QueryFunctionContext } from "@tanstack/react-query";
+import type { MutationFunctionContext, QueryFunctionContext } from "@tanstack/react-query";
 
 export async function getScooters(): Promise<Scooter[]> {
-    const { data, error } = await supabase.from("scooters").select('*').order('name', {ascending: true});
+    const { data, error } = await supabase.from("scooters").select('*').order('name', { ascending: true });
     if (error) throw error
-    return data as Scooter[] 
+    return data as Scooter[]
 }
 
-export async function getScooterDetails(context:QueryFunctionContext): Promise<Scooter> {
+export async function getScooterDetails(context: QueryFunctionContext): Promise<Scooter> {
     const { data, error } = await supabase.from("scooters").select('*').eq('id', context.meta!.id);
     if (error) throw error
-    return data[0] as Scooter 
+    return data[0] as Scooter
+}
+
+export async function addScooter(variables: object, context: MutationFunctionContext): Promise<void> {
+    const { data, error } = await supabase.from("scooters").insert(variables)
+
+    if (error) throw error
+    console.log(data);
+    console.log(variables, context)
 }

@@ -3,6 +3,7 @@ import { ButtonVariant } from "@/components/ButtonVariant";
 import { FormInput } from "@/components/FormInput";
 import { FormSelect } from "@/components/FormSelect";
 import { Overlay } from "@/components/Overlay";
+import { useScooterAdd } from "@/hooks/useScooterAdd";
 import { ScooterTypes } from "@/types/scooter";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
@@ -19,14 +20,14 @@ export function AdminScootersAdd({ close }: AdminScootersAddProps) {
         location: '',
     });
 
+     const mutation = useScooterAdd()
     const scooter_types = Object
         .entries(ScooterTypes)
         .map(([value, label], index) => ({ label, value, id: `${index}`, selected: false }))
 
-    const handleSubmit = (formData: FormData) => {
-
-        console.log(Array.from(formData.entries()))
-
+    const handleSubmit = async() => {
+       await mutation.mutateAsync(scooterData)
+       close()
     }
 
 
