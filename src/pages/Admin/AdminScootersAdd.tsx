@@ -20,14 +20,14 @@ export function AdminScootersAdd({ close }: AdminScootersAddProps) {
         location: '',
     });
 
-     const mutation = useScooterAdd()
+    const mutation = useScooterAdd()
     const scooter_types = Object
         .entries(ScooterTypes)
         .map(([value, label], index) => ({ label, value, id: `${index}`, selected: false }))
 
-    const handleSubmit = async() => {
-       await mutation.mutateAsync(scooterData)
-       close()
+    const handleSubmit = async () => {
+        await mutation.mutateAsync(scooterData)
+        close()
     }
 
 

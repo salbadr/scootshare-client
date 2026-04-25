@@ -2,12 +2,27 @@ import { ButtonVariant } from "@/components/ButtonVariant";
 import { Card } from "@/components/Card";
 import { scooterImage } from "@/helper";
 import { useScooters } from "@/hooks/useScooters";
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { AdminScootersAdd } from "./AdminScootersAdd";
+import type { Scooter } from "@/types/scooter";
 
 export function AdminScooters() {
-    const { isLoading, data: scooters } = useScooters();
+    const { isLoading, data } = useScooters();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchItem, setSearchItem] = useState('');
+
+    const scooters = useMemo(() => {
+        const result: Scooter[] | undefined = data;
+        if (!searchItem) {
+            return result;
+        }
+
+        if (result) {
+            //Add filtering
+            return result.filter((item) => item.name.startsWith(searchItem))
+        }
+
+    }, [data, searchItem])
 
     if (isLoading) {
         return (
@@ -28,7 +43,11 @@ export function AdminScooters() {
 
     const handleAddScooter = () => {
         setIsModalOpen(true)
-        
+
+    }
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchItem(event.target.value)
     }
 
     return (
@@ -63,7 +82,15 @@ export function AdminScooters() {
                 </section>
                 <Card className="bg-white hover:shadow-none mb-10 " alignment="left">
                     <label htmlFor="search" className="sr-only">Search Scooters</label>
-                    <input className="border p-2 focus:outline-2 focus:outline-zinc-300 rounded-2xl h-10 border-zinc-100 bg-zinc-100" id="search" name="search" placeholder="Search Scooters" type="search" />
+                    <input
+                        className="border px-3 focus:outline-2 focus:outline-zinc-300 focus:shadow-lg
+                         rounded-2xl h-10 border-zinc-100 bg-zinc-100"
+                        id="search"
+                        name="search"
+                        placeholder="Search Scooters"
+                        value={searchItem}
+                        type="search"
+                        onChange={handleSearch} />
                 </Card>
                 <Card className="bg-white hover:shadow-none scroll-smooth overflow-x-auto p-10" alignment="left">
 
@@ -110,9 +137,9 @@ export function AdminScooters() {
                 </Card>
             </section>
 
-                            
 
-          {isModalOpen && <AdminScootersAdd close={()=>setIsModalOpen(false)}/>}
+
+            {isModalOpen && <AdminScootersAdd close={() => setIsModalOpen(false)} />}
         </>
     )
 }
