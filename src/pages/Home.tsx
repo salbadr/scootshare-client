@@ -9,6 +9,7 @@ import { useId } from 'react';
 import { Button } from "@/components/Button";
 import { siteImage } from "@/helper";
 import type { CardsType } from "@/types";
+import { ButtonVariant } from "@/components/ButtonVariant";
 
 
 export default function Home() {
@@ -81,8 +82,8 @@ export default function Home() {
                         Get where you need to go with Scoot Share
                     </p>
                     <div className="flex md:w-lg flex-wrap justify-between gap-2 md:gap-0 ">
-                        <Button className="bg-amber-300 w-full md:w-60 border-amber-300 ">Browse Scooters</Button>
-                        <Button className="bg-white w-full md:w-60 border-2 border-amber-300">Learn More</Button>
+                        <ButtonVariant variant="callout" value='Browse Scooters'/>
+                        <ButtonVariant value='Learn More'/>
 
                     </div>
 

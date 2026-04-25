@@ -7,6 +7,5 @@ export function useScooterDetails(id?: string) {
         queryFn: getScooterDetails,
         meta: { id },
         enabled: !!id
-
     })
 }
