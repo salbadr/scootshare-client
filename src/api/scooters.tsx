@@ -21,3 +21,12 @@ export async function addScooter(variables: object, context: MutationFunctionCon
     console.log(data);
     console.log(variables, context)
 }
+
+export async function deleteScooter(id: number, context: MutationFunctionContext): Promise<void> {
+    
+    console.log(id, context)
+    const { data, error } = await supabase.from("scooters").delete().eq('id', id);
+
+    if (error) throw error
+    console.log(data);
+}
