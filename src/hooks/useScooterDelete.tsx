@@ -1,13 +1,13 @@
-import { addScooter } from "@/api/scooters";
+import { deleteScooter } from "@/api/scooters";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export function useScooterAdd() {
+export function useScooterDelete() {
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: addScooter,
+        mutationFn: deleteScooter,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['scooters'] })
+            queryClient.invalidateQueries({ queryKey: ['scooters']})
         },
         onError: (error) => {
             console.log(error)

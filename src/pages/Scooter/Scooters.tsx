@@ -27,18 +27,21 @@ export default function Scooters() {
                 {scooters.map(scooter => (
                     <Card key={scooter.id} className="hover:cursor-pointer p-0 bg-white" alignment="left">
                         <Link to={`/scooters/${scooter.id}`}>
-                            <img className="aspect-square object-cover border-none rounded-t-xl" alt={scooter.name} title={scooter.name} src={scooterImage(scooter.image)} />
-                            <div className="p-3 space-y-4">
-                                <div className="flex justify-between">
-                                    <h2 className="text-lg font-bold">{scooter.name}</h2>
-                                    <p>${scooter.price}/hr</p>
+                                
+
+                                <img className="w-full h-96 object-cover border-none rounded-t-xl" alt={scooter.name} title={scooter.name} src={scooterImage(scooter.image)} />
+                                <div className="p-3 space-y-4">
+                                    <div className="flex justify-between">
+                                        <h2 className="text-lg font-bold">{scooter.name}</h2>
+                                        <p>${scooter.price}/hr</p>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <IoLocationOutline className="text-xl" aria-label="Location" />
+                                        <span>{scooter.location}</span>
+                                    </div>
+                                    <Badge type={scooter.type}>{scooter.type}</Badge>
                                 </div>
-                                <div className="flex gap-2">
-                                    <IoLocationOutline className="text-xl" aria-label="Location"/>
-                                    <span>{scooter.location}</span>
-                                </div>
-                                <Badge type={scooter.type}>{scooter.type}</Badge>
-                            </div>
+                            
                         </Link>
 
                     </Card>

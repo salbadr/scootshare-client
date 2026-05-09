@@ -5,14 +5,19 @@ import { useScooters } from "@/hooks/useScooters";
 import React, { useMemo, useState } from "react";
 import { AdminScootersAdd } from "./AdminScootersAdd";
 import type { Scooter } from "@/types/scooter";
+import { FaRegEdit } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
+import { useScooterDelete } from "@/hooks/useScooterDelete";
 
 export function AdminScooters() {
     const { isLoading, data } = useScooters();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchItem, setSearchItem] = useState('');
+    const mutation = useScooterDelete();
 
     const scooters = useMemo(() => {
         const result: Scooter[] | undefined = data;
+    
         if (!searchItem) {
             return result;
         }
@@ -50,6 +55,19 @@ export function AdminScooters() {
         setSearchItem(event.target.value)
     }
 
+    const handleDeleteScooter = async (id: number) => {
+        if (window.confirm(`Are you sure you want to delete scooter Id: ${id}?`)) {
+            try {
+                await mutation.mutateAsync(id)
+                alert('Success')
+            }
+            catch (error) {
+                alert('Sorry. something went wrong');
+                console.error(error);
+            }
+        }
+    }
+
     return (
         <>
             <section>
@@ -61,7 +79,6 @@ export function AdminScooters() {
                         </p>
                     </div>
                     <ButtonVariant variant="callout" value='Add Scooter' onClick={handleAddScooter} />
-
 
                 </section>
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
@@ -93,7 +110,6 @@ export function AdminScooters() {
                         onChange={handleSearch} />
                 </Card>
                 <Card className="bg-white hover:shadow-none scroll-smooth overflow-x-auto p-10" alignment="left">
-
                     <h2 className="font-bold">Scooter List ({scooters.length})</h2>
                     <table className="w-5xl md:w-full mt-5 [&_td]:py-5 [&_th]:pb-3">
                         <thead className="font-bold">
@@ -126,7 +142,10 @@ export function AdminScooters() {
                                         {scooter.type}
                                     </td>
                                     <td>
-                                        Edit
+                                        <div className="flex gap-2">
+                                            <FaRegEdit aria-label="Edit" title="Edit" className="cursor-pointer" />
+                                            <FaTrashCan aria-label="Delete" title="Delete" className="text-red-400 cursor-pointer" onClick={() => handleDeleteScooter(scooter.id)} />
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
